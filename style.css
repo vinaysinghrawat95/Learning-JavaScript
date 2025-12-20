@@ -1,0 +1,17 @@
+.box{
+    border: 2px solid black;
+    height: 180px;
+    width: 100px;
+    margin: 2px; 
+    text-align: center;
+    background-color: rgb(53, 245, 0);
+    color: white;
+}
+
+.para{
+    color: red;
+}
+
+.newClass{
+    background-color: gray;
+}
