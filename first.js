@@ -1,109 +1,133 @@
 /*
-let btn = document.querySelector("#btn");
-
-btn.onclick = ()=>{
-    let box = document.querySelector("div");
-    box.style.backgroundColor = "yellow";
-    box.style.height = "300px";
-    box.style.width = "300px";
-    
-    box.onmouseover = ()=>{
-        box.style.backgroundColor = "red";
-        box.style.height = "180px";
-        box.style.width = "100px";
-    }
+const greet  = ()=>{
+    console.log("Hello");
 }
 
-let btn2 = document.querySelector("#btn2");
-
-btn2.ondblclick = ()=>{
-    console.log("you double click button");
-}
- */
-
-
-/*
-let btn = document.querySelector("#btn");
-
-btn.addEventListener("click", (evt)=> {
-    alert("You submit your form");
-})
-
-let box = window.document.querySelector("div");
-
-box.addEventListener("click", (e) => {
-    console.log(e.type);
-    console.log(e.target);
-    console.log(e.clientX, e.clientY);
-    
-    
-})
-
+setTimeout(greet, 3000);
 */
 
-// let btn = document.querySelector("#btn");
-// let body = document.querySelector("body");
-
-// let mode =  body.style.backgroundColor = "white";
-
-// btn.addEventListener("click", () => {
-
-//     if(body.style.backgroundColor === "white"){
-//         body.style.backgroundColor = "black";
-//     }else{
-//         body.style.backgroundColor = "white";
+/* Callback Hell */
+// const getData = (dataId, getNextData)=>{
+//     setTimeout(() => {
+//         console.log(`Id ${dataId} Data`);
+//     {
+//         if(getNextData){
+//             getNextData();
+//         }
 //     }
+//     }, 3000);
+// }
+
+// getData(1, () => {
+//     getData(2, () => {
+//         getData(3, ()=>{
+//         });
+//         });
 // });
 
 
-//  Write a Program to reverse a string in JavaScript.
-// let str = "vinay";
-// let reverseStr = "";
+/* Promises */
 
-// for(let i = str.length - 1; i >= 0; i--){
-//     reverseStr = reverseStr + str[i];
-// }
-
-// console.log(reverseStr);
-
-
-// Write a function to find the largest and Smallest
-
-// const largestNumber = (arr) => {
-
-//     let largest = arr[0];
-//     let smallest = arr[0];
-//     for(let i = 1; i < arr.length; i++){
-//         if(largest < arr[i]){
-//             largest = arr[i];
-//         }else{
-//             if(smallest > arr[i]){
-//             smallest = arr[i];
-//             }
+// const getData = (id, getNextData) => {
+//     return new Promise((resolve, reject) => {
+//     setTimeout(()=> {
+//         console.log("Data ",id);
+//         resolve("Successfull.");
+//         // reject("some error occured");
+//         if(getNextData){
+//             getNextData();
 //         }
-//     }
-//     console.log(largest);
-//     console.log(smallest);
-    
-
+//     }, 3000);
+//     });
 // }
 
-// let arr = [3, 1, 12, 22, 2, 2,120, 223, 2, 23];
-// largestNumber(arr);
+
+/* Use of than and catch */
+
+// const getPromise = () => {
+//     return new Promise((resolve, reject) => {
+//         console.log("I'm promise");
+//        // resolve("Promise resolve");
+//        reject("network error");
+//     });
+// };
+
+// Use of than
+// let promise = getPromise();
+// promise.then((res) => {
+//     console.log("Resolve sucessfully");
+// });
+
+//Use of catch
+// let promise = getPromise();
+// promise.catch((rej) => {
+//     console.log("Promise reject because",rej);
+// });
 
 
-// Write a program to find duplicate values in an array.
+/* Prmoise Chaining */
 
-const findDuplicate = (arr) => {
-    let duplicate = arr[0];
-    for(let i = 0; i < arr.length; i++){
-        for(let j = 0; j < arr.length; j++){
-            if(arr[i] === arr[j]){
-                console.log(arr[j]);
-            }
-        }
-    }
+// const asyncFun1 = ()=>{
+//     return new Promise((resolve, reject)=> {
+//         setTimeout(()=>{
+//             console.log("Data1");
+//             resolve("Sucess");
+//         }, 4000);
+//     });
+// }
+
+// const asyncFun2 = ()=>{
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log("Data2");
+//             resolve("sucess");
+//         },4000);
+//     });
+// }
+
+// console.log("Fatching 1st Data...");
+
+// asyncFun1().then((res) => {
+//     console.log("Fatching 2nd Data...");
+//     asyncFun2().then((res) => {})
+    
+// });
+
+/* Promise chaining another type */
+
+// const getdata = (dataId)=>{
+//     return new Promise((resolve, reject) => {
+//         setTimeout(()=> {
+//         console.log("Data",dataId);
+//         resolve("sucess");
+//         },2000);
+ 
+//     });
+// }
+
+// getdata(1).then((res) => {
+//     return getdata(2);
+// }).then((res)=> {
+//     return getdata(3);
+// }).then((res) => {
+//     console.log(res); 
+// });
+
+/* Async-Await */
+
+const getdata = (dataId)=>{
+    return new Promise((resolve, reject) => {
+        setTimeout(()=> {
+        console.log("Data",dataId);
+        resolve("sucess");
+        },2000);
+ 
+    });
 }
 
-let arr = [3, 1, 12, 22, 2, 2,120, 223, 2, 23];
-findDuplicate(arr);
+async function checkData(){
+    await getdata(1);
+    await getdata(2);
+}
+
+checkData();
